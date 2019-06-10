@@ -1,0 +1,17 @@
+[
+{
+  "modid": "kinetic anti-cheat",
+  "name": "kinetic anti-cheat",
+  "description": "Anti-Cheat for the Kinetic Network",
+  "version": "12.2.1",
+  "mcversion": "1.12.2",
+  "url": "https://kineticnetwork.net/",
+  "updateUrl": "",
+  "authorList": ["GameGunner5, SleepingTea, AtlasTheFirst"],
+  "credits": "-",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
+
