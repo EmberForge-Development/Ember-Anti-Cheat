@@ -8,16 +8,11 @@ import java.util.Locale;
 
 import org.apache.commons.io.FileUtils;
 
-import net.kineticdevelopment.kineticanticheat.commands.ScreenGrab;
 import net.kineticdevelopment.kineticanticheat.eventbuses.PlayerJoinChecker;
 import net.kineticdevelopment.kineticanticheat.packets.MLMHandler;
 import net.kineticdevelopment.kineticanticheat.packets.ModListMessage;
 import net.kineticdevelopment.kineticanticheat.packets.RPLHandler;
 import net.kineticdevelopment.kineticanticheat.packets.ResourcePackListMessage;
-import net.kineticdevelopment.kineticanticheat.packets.screengrab.SGCMHandler;
-import net.kineticdevelopment.kineticanticheat.packets.screengrab.SGSMHandler;
-import net.kineticdevelopment.kineticanticheat.packets.screengrab.ScreenGrabClientMessage;
-import net.kineticdevelopment.kineticanticheat.packets.screengrab.ScreenGrabServerMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -25,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,8 +49,6 @@ public class Main {
     
 	  checkerInstance.registerMessage(MLMHandler.class, ModListMessage.class, 0, Side.SERVER);
 	  checkerInstance.registerMessage(RPLHandler.class, ResourcePackListMessage.class, 1, Side.SERVER);
-	  checkerInstance.registerMessage(SGCMHandler.class, ScreenGrabClientMessage.class, 2, Side.CLIENT);
-	  checkerInstance.registerMessage(SGSMHandler.class, ScreenGrabServerMessage.class, 3, Side.SERVER);
     
 	  xmlHandler = new XMLHandler(event.getModConfigurationDirectory().getPath());
 	  if (event.getSide() == Side.CLIENT) {
@@ -88,11 +80,6 @@ public class Main {
 			  }
 		  }
 	  }
-  }
-  
-  @EventHandler
-  public void serverStarting(FMLServerStartingEvent event) {
-	  event.registerServerCommand(new ScreenGrab());
   }
   
   public boolean reloadList() {

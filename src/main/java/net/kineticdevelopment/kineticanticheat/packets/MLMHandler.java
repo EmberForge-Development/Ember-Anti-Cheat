@@ -46,6 +46,11 @@ public class MLMHandler implements IMessageHandler<ModListMessage, IMessage> {
 			for(int j =0; j < items.size(); j++) {
 				message2 = message2+items.get(j)+"\n";
 			}
+			try {
+				Thread.sleep(500l);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			serverPlayer.connection.disconnect(new TextComponentString(message2));
       
 			Main.reportLogger.generateReport(serverPlayer.getName(), items);
