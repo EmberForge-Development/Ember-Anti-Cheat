@@ -18,7 +18,6 @@ public class RPLHandler implements IMessageHandler<ResourcePackListMessage, IMes
 		ArrayList<String> items = new ArrayList<String>(Arrays.asList(resources.split(",")));
 		for (int i = 0; i < items.size(); i++) {
 			if(items.get(i).toLowerCase().contains("x-ray") || items.get(i).toLowerCase().contains("xray")) {
-				System.out.println("Yeet");
 				try {
 					Thread.sleep(500l);
 				} catch (InterruptedException e) {
