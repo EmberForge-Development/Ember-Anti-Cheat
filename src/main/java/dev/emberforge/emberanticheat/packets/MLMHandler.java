@@ -1,9 +1,9 @@
-package net.kineticdevelopment.kineticanticheat.packets;
+package dev.emberforge.emberanticheat.packets;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import net.kineticdevelopment.kineticanticheat.Main;
+import dev.emberforge.emberanticheat.EmberAntiCheat;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 
-public class MLMHandler implements IMessageHandler<ModListMessage, IMessage> {
-	public IMessage onMessage(ModListMessage message, MessageContext ctx) {
+public class MLMHandler implements IMessageHandler<dev.emberforge.emberanticheat.packets.ModListMessage, IMessage> {
+	public IMessage onMessage(dev.emberforge.emberanticheat.packets.ModListMessage message, MessageContext ctx) {
 		EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
 		
 		String modList = message.toSend;

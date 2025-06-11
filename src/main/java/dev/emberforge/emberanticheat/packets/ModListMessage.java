@@ -1,4 +1,4 @@
-package net.kineticdevelopment.kineticanticheat.packets;
+package dev.emberforge.emberanticheat.packets;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.ByteBufUtils;

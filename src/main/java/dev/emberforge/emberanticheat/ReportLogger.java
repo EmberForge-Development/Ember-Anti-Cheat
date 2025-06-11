@@ -1,4 +1,4 @@
-package net.kineticdevelopment.kineticanticheat;
+package dev.emberforge.emberanticheat;
 
 
 import java.io.File;
@@ -21,29 +21,24 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class ReportLogger
-{
+public class ReportLogger {
   private String filePath = "";
   
-  public ReportLogger(String filePath)
-  {
+  public ReportLogger(String filePath) {
     this.filePath = filePath;
     configureDirectory();
   }
   
-  private void configureDirectory()
-  {
+  private void configureDirectory() {
     File location = new File(this.filePath + "/Illegal_Clients/");
     if (!location.exists()) {
       location.mkdir();
     }
   }
   
-  public void generateReport(String playerName, ArrayList<String> leftoverMods)
-  {
+  public void generateReport(String playerName, ArrayList<String> leftoverMods) {
     System.out.println("Creating report for player: " + playerName);
-    try
-    {
+    try {
       DateFormat datetime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
       
       File xmlFile = new File(this.filePath + "/Illegal_Clients/" + playerName + "_" + datetime.format(new Date()) + ".xml");
@@ -55,8 +50,7 @@ public class ReportLogger
       
       Element rootElement = doc.createElement("playerName");
       doc.appendChild(rootElement);
-      for (int i = 0; i < leftoverMods.size(); i++)
-      {
+      for (int i = 0; i < leftoverMods.size(); i++) {
         Element modElement = doc.createElement("Mod");
         rootElement.appendChild(modElement);
         Attr attrmcp = doc.createAttribute("name");
@@ -73,16 +67,13 @@ public class ReportLogger
       
       System.out.println("Report created at: " + xmlFile.getPath());
     }
-    catch (ParserConfigurationException pce)
-    {
+    catch (ParserConfigurationException pce) {
       pce.printStackTrace();
     }
-    catch (TransformerException tfe)
-    {
+    catch (TransformerException tfe) {
       tfe.printStackTrace();
     }
-    catch (IOException e)
-    {
+    catch (IOException e) {
       e.printStackTrace();
     }
   }

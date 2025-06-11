@@ -1,4 +1,4 @@
-package net.kineticdevelopment.kineticanticheat;
+package dev.emberforge.emberanticheat;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;

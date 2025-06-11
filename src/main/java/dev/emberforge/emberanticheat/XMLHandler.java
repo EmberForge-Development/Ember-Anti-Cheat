@@ -1,4 +1,4 @@
-package net.kineticdevelopment.kineticanticheat;
+package dev.emberforge.emberanticheat;
 
 import java.io.File;
 import java.io.IOException;
