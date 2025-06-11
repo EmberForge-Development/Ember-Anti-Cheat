@@ -24,14 +24,15 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid="kinetic anti-cheat", version="12.3.0", acceptedMinecraftVersions="[1.12.2]")
+@Mod(EmberAntiCheat.MODID)
 public class Main {
-  public static final String MODID = "kinetic anti-cheat";
-  public static final String VERSION = "12.3.0";
+  public static final String MODID = "emberanticheat";
+  public static final String VERSION = "forge-1.20.1-1.0.0";
+  private static final Logger LOGGER = LogUtils.getLogger();
   public static XMLHandler xmlHandler;
   public static ReportLogger reportLogger;
-  public static SimpleNetworkWrapper checkerInstance = NetworkRegistry.INSTANCE.newSimpleChannel("kinetic anti-cheat");
-  @Mod.Instance("kinetic anti-cheat")
+  public static SimpleNetworkWrapper checkerInstance = NetworkRegistry.INSTANCE.newSimpleChannel("emberanticheat");
+  @Mod.Instance("emberanticheat")
   public static Main modInstance;
   private File modDirectory;
   public ArrayList<File> strangeFiles;
@@ -86,9 +87,42 @@ public class Main {
 	  xmlHandler.reload();
 	  return true;
   }
-  
-  @EventHandler
-  public void init(FMLInitializationEvent event) {
-	  MinecraftForge.EVENT_BUS.register(new PlayerJoinChecker());
-  }
+
+  public EmberAntiCheat(FMLJavaModLoadingContext context) {
+		IEventBus modEventBus = context.getModEventBus();
+
+		modEventBus.addListener(this::commonSetup);
+
+		MinecraftForge.EVENT_BUS.register(this);
+
+		// Register the item to a creative tab
+		modEventBus.addListener(PlayerJoinChecker::);
+
+		// Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+		context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+	}
+
+	private void commonSetup(final FMLCommonSetupEvent event) {
+		LOGGER.info("Initializing Mod EmberAntiCheat (Version: " + VERSION + ") by EmberForge Development");
+	}
+
+	// You can use SubscribeEvent and let the Event Bus discover methods to call
+	@SubscribeEvent
+	public void onServerStarting(ServerStartingEvent event) {
+		// Do something when the server starts
+	}
+
+	// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+	public static class ClientModEvents {
+		@SubscribeEvent
+		public static void onClientSetup(FMLClientSetupEvent event) {
+			// Some client setup code
+		}
+	}
+
+//  @EventHandler
+//  public void init(FMLInitializationEvent event) {
+//	  MinecraftForge.EVENT_BUS.register(new PlayerJoinChecker());
+//  }
 }

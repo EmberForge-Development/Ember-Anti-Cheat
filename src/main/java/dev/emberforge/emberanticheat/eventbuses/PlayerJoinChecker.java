@@ -1,4 +1,4 @@
-package net.kineticdevelopment.kineticanticheat.eventbuses;
+package dev.emberforge.emberanticheat.eventbuses;
 
 import java.io.File;
 import java.util.Collection;
